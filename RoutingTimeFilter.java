@@ -30,7 +30,7 @@ public class RoutingTimeFilter implements Filter{
             long now = date.getTime();
             long routeTime = now - Long.valueOf(httpReq.getHeader("x-request-start"));
             if(routeTime < 0) routeTime = 0;
-            System.out.println("time in routing (ms): " + routeTime);
+            System.out.println("at=metric queue=" + routeTime + "ms");
         }
         chain.doFilter(req, res);
     }
