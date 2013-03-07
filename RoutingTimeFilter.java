@@ -28,7 +28,9 @@ public class RoutingTimeFilter implements Filter{
         if(httpReq.getHeader("x-request-start") != null) {        
             Date date = new Date();
             long now = date.getTime();
-            System.out.println("time in routing (ms): " + (now - Long.valueOf(httpReq.getHeader("x-request-start"))));
+            long routeTime = now - Long.valueOf(httpReq.getHeader("x-request-start"));
+            if(routeTime < 0) routeTime = 0;
+            System.out.println("time in routing (ms): " + routeTime);
         }
         chain.doFilter(req, res);
     }
